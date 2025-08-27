@@ -1,12 +1,37 @@
-class SistemaAgricola:
+from ListaSimpleEnlazada import ListaEnlazada
+from Campo import Campo
+from Estacion import Estacion
+from Frecuencia import Frecuencia
+from Sensor import Sensor
+from xml.dom.minidom import parse
+
+
+class SistemaAgricultura:
     def __init__(self):
-        self.estaciones = []
+        self.campos = ListaEnlazada()
+        #self.estaciones = []
         self.archivo_cargado = False
 
-    def cargar_archivo(self, ruta):
-        print(f" Cargando archivo: {ruta}")
-        self.archivo_cargado = True
+    def cargar_archivo(self, ruta_archivo):
+
+        try:
+            dom = parse(ruta_archivo)
+            campos_xml = dom.getElementsByTagName("campo")
+            
+            for campo_xml in campos_xml:
+                id_campo = campo_xml.getAttribute('id')
+                nombre_campo = campo_xml.getAttribute('nombre')
+                campo = campo(id_campo, nombre_campo)
+                print(f"Cargando Campo Agricola{id_campo}")
+                
+                #ecargar 
+                print
         
+
+        except Exception as e:
+            print(f"Error al cargar el archivo {e}")
+
+
 
     def procesar_datos(self):
         if not self.archivo_cargado:
