@@ -1,4 +1,4 @@
-from listaSimpleEnlazada import ListaEnlazada
+from ListaSimpleEnlazada import ListaEnlazada
 
 class Sensor:
     def __init__(self, id_sensor, nombre):

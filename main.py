@@ -1,8 +1,8 @@
-from moduloSistema_agricola import SistemaAgricola
+from SistemaAgricultura import SistemaAgricola
 
 def mostrar_menu():
     print("--------------------------------------")
-    print("\n===== MENÚ PRINCIPAL =====")
+    print("\n=====      MENÚ PRINCIPAL      =====")
     print("--------------------------------------")
     print("1. Cargar archivo")
     print("2. Procesar archivo")
