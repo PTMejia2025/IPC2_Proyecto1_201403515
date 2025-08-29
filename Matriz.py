@@ -50,3 +50,25 @@ class Matriz:
         for i in range(self.num_filas):
             estacion = headers_fila.obtener(i)
             print(f"{estacion.id}", end="\t\t")
+
+    def mostrar(self, titulo, headers_fila, headers_columna):
+        # Muestra la matriz de forma tabular
+        print(f"\n{titulo}")
+        print("=" * 50)
+        
+        # Headers de columnas
+        print("Estacion\\Sensor", end="\t")
+        for j in range(self.num_columnas):
+            sensor = headers_columna.obtener(j)
+            print(f"{sensor.id}", end="\t")
+        print()
+        
+        # Filas con datos
+        for i in range(self.num_filas):
+            estacion = headers_fila.obtener(i)
+            print(f"{estacion.id}", end="\t\t")
+            for j in range(self.num_columnas):
+                freq = self.obtener(i, j)         # Frecuencia o None
+                val = freq.valor if freq else 0   # numérico
+                print(f"{val}", end="\t")
+            print()

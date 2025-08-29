@@ -37,3 +37,7 @@ class ListaEnlazada:
             actual = actual.siguiente
             indice += 1
         return -1
+    
+
+
+
