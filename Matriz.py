@@ -72,3 +72,61 @@ class Matriz:
                 val = freq.valor if freq else 0   # numérico
                 print(f"{val}", end="\t")
             print()
+
+
+from ListaSimpleEnlazada import ListaEnlazada
+from Frecuencia import Frecuencia
+
+class MatrizPatron:
+    def __init__(self, num_filas, num_columnas):
+        self.num_filas = num_filas
+        self.num_columnas = num_columnas
+        self.matriz = ListaEnlazada()
+        for _ in range(num_filas):
+            fila = ListaEnlazada()
+            for _ in range(num_columnas):
+                fila.insertar(0)  # entero 0
+            self.matriz.insertar(fila)
+
+    def establecer(self, i, j, valor_binario):
+        fila = self.matriz.obtener(i)
+        if fila:
+            nodo = fila.primero
+            k = 0
+            while nodo and k < j:
+                nodo = nodo.siguiente
+                k += 1
+            if nodo:
+                nodo.dato = 1 if valor_binario else 0
+
+    def obtener(self, i, j):
+        fila = self.matriz.obtener(i)
+        return fila.obtener(j) if fila else 0
+
+    def mostrar(self, titulo, headers_fila, headers_columna):
+        print(f"\n{titulo}")
+        print("=" * 50)
+        print("Estacion\\Sensor", end="\t")
+        for j in range(self.num_columnas):
+            s = headers_columna.obtener(j)
+            print(f"{s.id}", end="\t")
+        print()
+        for i in range(self.num_filas):
+            e = headers_fila.obtener(i)
+            print(f"{e.id}", end="\t\t")
+            for j in range(self.num_columnas):
+                print(f"{self.obtener(i, j)}", end="\t")
+            print()
+
+
+# Agrega este método dentro de tu clase Matriz:
+def a_patrones(self):
+    mp = MatrizPatron(self.num_filas, self.num_columnas)
+    for i in range(self.num_filas):
+        for j in range(self.num_columnas):
+            freq = self.obtener(i, j)              # Frecuencia
+            val = freq.valor if freq else 0        # numérico
+            mp.establecer(i, j, 1 if val > 0 else 0)
+    return mp
+# Nota: pega este método a_patrones como method de Matriz (sangría dentro de la clase).
+
